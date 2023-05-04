@@ -1,0 +1,9 @@
+"""
+to store secrets in k8s
+"""
+secretGenerator:
+  - name: db-password
+    literal:
+      -password=supersecretpasswordhere
+resources:
+  -postgres.yaml
