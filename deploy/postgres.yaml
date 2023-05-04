@@ -4,7 +4,7 @@ to identify the deployment in our k8s cluster
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:postgres
+  name: postgres
   labels:
     app: django-postgres
 spec:
@@ -33,6 +33,7 @@ spec:
               value: djagouser
             - name: POSTGRES_PASSWORD
               valueForm:
-                name: db-password
-                key: password
+                secretKeyref:
+                  name: db-password
+                  key: password
 
