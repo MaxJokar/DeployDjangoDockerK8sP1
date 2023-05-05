@@ -1,6 +1,19 @@
 """
 to identify the deployment in our k8s cluster
 """
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: django-postgres-pvc
+  labels:
+    app: django
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage:1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,11 +30,20 @@ spec:
   template:
     metadata:
       labels:
+      app: django
+      tier: postgres
+  volumes:
+    - name:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
         app: django
         tier: postgres
     spec:
       containers:
-        - image: postgres:15.2
+        - image: postgres:12
           name: postgres
           ports:
             - containerPort: 5432
