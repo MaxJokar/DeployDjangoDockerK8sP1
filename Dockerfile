@@ -1,4 +1,6 @@
-FROM python:3.11.2-alpine3.17
+# FROM python:3.11.2-alpine3.17
+# FROM python:3.11.2-alpine3.17
+FROM python:3.10-buster
 
 ENV PYTHONUNBUFFERED 1
 
